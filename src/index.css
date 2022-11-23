@@ -1,5 +1,6 @@
 html,
 body {
+  width: 100vw;
   display: flex;
   margin: 0;
   padding: 0;
@@ -8,6 +9,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.App {
+  display: flex;
+  text-align: center;
+  width: 100vw;
+  overflow: auto;
 }
 
 body {

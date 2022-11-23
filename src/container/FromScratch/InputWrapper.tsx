@@ -18,7 +18,7 @@ const InputWrapper = (props: InputWrapperPropTypes) => {
   useEffect(() => {
     return () => {
       props.setError(props.fieldName, undefined);
-      props.onChange(undefined);
+      props.onChange("");
     };
   }, []);
   return <Input {...props} />;

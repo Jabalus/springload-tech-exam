@@ -18,7 +18,6 @@ const FromScratch = () => {
 
   const hasTiger = formValues && formValues?.animals.includes("Tiger");
 
-  console.log("errors", errors);
   return (
     <div>
       {fieldMapper(fields, formValues, errors, changeField)}
