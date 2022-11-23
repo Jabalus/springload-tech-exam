@@ -31,19 +31,10 @@ const UsingAntd = () => {
         <Input.Password />
       </Form.Item>
       <Form.Item label="Colour" name="colour">
-        <Select
-          style={{ width: "100%" }}
-          placeholder="Please select"
-          options={colours}
-        />
+        <Select style={{ width: "100%" }} options={colours} />
       </Form.Item>
       <Form.Item label="Animals" name="animals">
-        <Select
-          mode="multiple"
-          style={{ width: "100%" }}
-          placeholder="Please select"
-          options={animals}
-        />
+        <Select mode="multiple" style={{ width: "100%" }} options={animals} />
       </Form.Item>
       {shouldRenderTiger && (
         <Form.Item
