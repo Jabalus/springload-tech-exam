@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/springload-tech-exam/static/css/main.44df6b0a.css",
-    "main.js": "/springload-tech-exam/static/js/main.55badb28.js",
+    "main.js": "/springload-tech-exam/static/js/main.806741f6.js",
     "static/js/787.52e0cf90.chunk.js": "/springload-tech-exam/static/js/787.52e0cf90.chunk.js",
     "index.html": "/springload-tech-exam/index.html",
     "main.44df6b0a.css.map": "/springload-tech-exam/static/css/main.44df6b0a.css.map",
-    "main.55badb28.js.map": "/springload-tech-exam/static/js/main.55badb28.js.map",
+    "main.806741f6.js.map": "/springload-tech-exam/static/js/main.806741f6.js.map",
     "787.52e0cf90.chunk.js.map": "/springload-tech-exam/static/js/787.52e0cf90.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.44df6b0a.css",
-    "static/js/main.55badb28.js"
+    "static/js/main.806741f6.js"
   ]
 }
