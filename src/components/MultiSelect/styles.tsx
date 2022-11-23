@@ -74,9 +74,10 @@ export const StyledDropdownBox = styled.div<{
     width: calc(100% - 16px);
     text-align: left;
     min-height: 22px;
+    display: flex;
   }
 
-  svg {
+  .display > svg {
     width: 20px;
     height: 20px;
     transform: rotate(0deg);
@@ -109,4 +110,23 @@ export const StyledDropdownBox = styled.div<{
 
     ${({ $open }) => ($open ? "display: block" : "display: none")}
   }
+`;
+
+export const Pill = styled.div`
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 24px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  line-height: 22px;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(5, 5, 5, 0.06);
+  border-radius: 4px;
+  cursor: default;
+  user-select: none;
+  margin-right: 5px;
 `;

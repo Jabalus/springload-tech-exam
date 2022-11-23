@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getValidationFunc } from "../helpers/validations";
+import { getValidationFunc } from "../helpers/form";
 
 export type GenericObject = {
   [key: string]: any;
@@ -20,13 +20,20 @@ export type RuleType = {
   message?: string;
 };
 
+export type OptionType = {
+  key: string;
+  label: string;
+  value: string;
+};
+
 export type SingleFieldType = {
   key: string;
   type: string;
-  label?: string;
+  label: string;
   // rules?: (formValues: GenericObject) => string | GenericObject | undefined;
-  rules: RuleType[];
+  rules?: RuleType[];
   readOnly?: boolean;
+  options?: OptionType[];
 };
 
 export const useForm = (

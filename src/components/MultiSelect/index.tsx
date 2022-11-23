@@ -1,7 +1,7 @@
-import React, { useState, ChangeEvent, useRef, useEffect } from "react";
-import { MdExpandMore } from "react-icons/md";
+import React, { useState, useRef, useEffect } from "react";
+import { MdClose, MdExpandMore } from "react-icons/md";
 import { InputContainer } from "../Input/styles";
-import { StyledDropdownBox } from "./styles";
+import { Pill, StyledDropdownBox } from "./styles";
 
 type OptionType = {
   key: string;
@@ -34,6 +34,7 @@ MultiSelectPropTypes) => {
   const dropdownRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const triggerRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
+  console.log("value", value);
   useEffect(() => {
     const listener = (event: any) => {
       const isInside =
@@ -63,6 +64,13 @@ MultiSelectPropTypes) => {
     setOpen(false);
   };
 
+  const handleRemove = (val: string) => {
+    onChange(value.filter((currVal: string) => currVal !== val));
+  };
+
+  const displayedOptions = options.filter(
+    (option) => !value?.includes(option.value)
+  );
   return (
     <InputContainer $fluid={fluid}>
       {label && <label> {label} </label>}
@@ -72,21 +80,29 @@ MultiSelectPropTypes) => {
         $open={isOpen}
       >
         <div className="display" onClick={() => setOpen(!isOpen)}>
-          <div className="value-container">{value}</div>
+          <div className="value-container">
+            {value &&
+              value.map((val: string) => (
+                <Pill>
+                  {options.find((opt) => opt.value === val)?.label}{" "}
+                  <MdClose onClick={() => handleRemove(val)} />
+                </Pill>
+              ))}
+          </div>
           <MdExpandMore />
         </div>
         <div ref={dropdownRef} className="dropdown-menu">
-          {options
-            .filter((option) => !value?.includes(option.value))
-            .map(({ key, label, value: valueString }) => (
-              <div
-                className="option"
-                key={key}
-                onClick={() => handleSelect(valueString)}
-              >
-                {label}
-              </div>
-            ))}
+          {displayedOptions.length > 0
+            ? displayedOptions.map(({ key, label, value: valueString }) => (
+                <div
+                  className="option"
+                  key={key}
+                  onClick={() => handleSelect(valueString)}
+                >
+                  {label}
+                </div>
+              ))
+            : "No more options"}
         </div>
       </StyledDropdownBox>
       <div className="msg">{error}</div>
