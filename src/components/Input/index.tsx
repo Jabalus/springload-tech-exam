@@ -1,16 +1,16 @@
-import React, { useState, ChangeEvent } from 'react'
-import { InputContainer, StyledInput } from './styles'
+import React, { useState, ChangeEvent } from "react";
+import { InputContainer, StyledInput } from "./styles";
 
 type InputPropTypes = {
-  label: string
-  value: any
-  onChange: (val: string) => void
-  fluid?: boolean
-  type: string
-  error?: string
-  readOnly?: boolean
-  maxLength?: number
-}
+  label: string;
+  value: any;
+  onChange: (val: string) => void;
+  fluid?: boolean;
+  type: string;
+  error?: string;
+  readOnly?: boolean;
+  maxLength?: number;
+};
 
 const Input = ({
   type,
@@ -23,9 +23,9 @@ const Input = ({
   maxLength,
 }: InputPropTypes) => {
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    onChange(e.target.value)
-  }
+    e.preventDefault();
+    onChange(e.target.value);
+  };
 
   return (
     <InputContainer $fluid={fluid}>
@@ -38,14 +38,14 @@ const Input = ({
         readOnly={readOnly}
         maxLength={maxLength ? Number(maxLength) : undefined}
       />
-      <div className='msg'>{error}</div>
+      <div className="msg">{error}</div>
     </InputContainer>
-  )
-}
+  );
+};
 
 Input.defaultProps = {
-  type: 'text',
-  error: '',
-}
+  type: "text",
+  error: "",
+};
 
-export default Input
+export default Input;

@@ -18,6 +18,11 @@ export type RuleType = {
   type: string;
   length?: number;
   message?: string;
+  validate?: (
+    formValues: any,
+    key: string,
+    message?: string
+  ) => string | undefined;
 };
 
 export type OptionType = {

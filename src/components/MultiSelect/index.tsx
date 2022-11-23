@@ -11,13 +11,13 @@ type OptionType = {
 type MultiSelectPropTypes = {
   label: string;
   value: any;
-  onChange: (val: string[]) => void;
+  onChange: (val: string[] | string) => void;
   fluid?: boolean;
   type: string;
   error?: string;
   readOnly?: boolean;
-  maxLength?: number;
   options: OptionType[];
+  singleSelect?: boolean;
 };
 
 const MultiSelect = ({
@@ -27,6 +27,7 @@ const MultiSelect = ({
   fluid,
   error,
   options,
+  singleSelect,
 }: // readOnly,
 MultiSelectPropTypes) => {
   const [isOpen, setOpen] = useState(false);
@@ -34,7 +35,6 @@ MultiSelectPropTypes) => {
   const dropdownRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const triggerRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-  console.log("value", value);
   useEffect(() => {
     const listener = (event: any) => {
       const isInside =
@@ -57,7 +57,11 @@ MultiSelectPropTypes) => {
     onChange([value, val]);
 
     if (value && Array.isArray(value)) {
-      onChange([...value, val]);
+      if (singleSelect) {
+        onChange([val]);
+      } else {
+        onChange([...value, val]);
+      }
     } else {
       onChange([val]);
     }
@@ -83,9 +87,11 @@ MultiSelectPropTypes) => {
           <div className="value-container">
             {value &&
               value.map((val: string) => (
-                <Pill>
+                <Pill key={val}>
                   {options.find((opt) => opt.value === val)?.label}{" "}
-                  <MdClose onClick={() => handleRemove(val)} />
+                  {!singleSelect && (
+                    <MdClose onClick={() => handleRemove(val)} />
+                  )}
                 </Pill>
               ))}
           </div>
@@ -108,11 +114,6 @@ MultiSelectPropTypes) => {
       <div className="msg">{error}</div>
     </InputContainer>
   );
-};
-
-MultiSelect.defaultProps = {
-  type: "text",
-  error: "",
 };
 
 export default MultiSelect;

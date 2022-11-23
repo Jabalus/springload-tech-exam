@@ -33,12 +33,20 @@ export const getValidationFunc = (
   ruleObj: RuleType,
   formValues: any
 ) => {
+  if (ruleObj.type === "required") {
+    return required(formValues, key, ruleObj.message);
+  }
+
   if (ruleObj.type === "email") {
     return email(formValues, key, ruleObj.message);
   }
 
   if (ruleObj.type === "minLen" && ruleObj.length) {
     return minLen(formValues, key, ruleObj.length, ruleObj.message);
+  }
+
+  if (ruleObj.type === "custom" && ruleObj.validate) {
+    return ruleObj.validate(formValues, key, ruleObj.message);
   }
 
   return undefined;
@@ -51,6 +59,20 @@ export const fieldMapper = (
   changeField: (key: string, val: any) => void
 ) => {
   return fields.map(({ key, type, label, options }: SingleFieldType) => {
+    if (type === "singleselect" && options) {
+      return (
+        <MultiSelect
+          key={key}
+          type={type}
+          label={label}
+          onChange={(val) => changeField(key, val)}
+          value={formValues[key]}
+          error={errors[key]}
+          options={options}
+          singleSelect
+        />
+      );
+    }
     if (type === "multiselect" && options) {
       return (
         <MultiSelect

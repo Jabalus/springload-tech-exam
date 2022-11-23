@@ -87,6 +87,7 @@ export const StyledDropdownBox = styled.div<{
   }
 
   .dropdown-menu {
+    z-index: 2;
     cursor: pointer;
     position: absolute;
     top: 100%;
